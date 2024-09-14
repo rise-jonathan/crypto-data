@@ -4,22 +4,31 @@ import Col from "react-bootstrap/Col";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 const initialState = {
-  from: 100,
-  to: 500,
+  from: 0,
+  to: 0,
 };
+
+const fromCoin = "BTC";
+const toCoin = "USD";
+const initialCoins = { fromCoin, toCoin };
+
 function Converter() {
   const [values, setValues] = React.useState(initialState);
+  const [coin, setCoin] = React.useState(initialCoins);
   const [leftToRight, setLeftToRight] = React.useState(true);
 
   const handleClick = () => {
     setValues({
       from: values.to,
       to: values.from,
+    });
+    setCoin({
+      fromCoin: coin.toCoin,
+      toCoin: coin.fromCoin,
     });
     setLeftToRight(!leftToRight);
   };
@@ -33,14 +42,17 @@ function Converter() {
               type="text"
               placeholder="0"
               value={values.from}
-              defaultValue={values.from}
+              onChange={(e) => setValues({ ...values, from: e.target.value })}
             />
           </FloatingLabel>
           <FloatingLabel controlId="from" label="Coin">
-            <Form.Select>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <Form.Select
+              value={coin.fromCoin}
+              onChange={(e) => setCoin({ ...coin, fromCoin: e.target.value })}
+            >
+              <option value="BTC">BTC</option>
+              <option value="USD">USD</option>
+              <option value="ETH">ETH</option>
             </Form.Select>
           </FloatingLabel>
         </InputGroup>
@@ -55,14 +67,17 @@ function Converter() {
               type="text"
               placeholder="0"
               value={values.to}
-              defaultValue={values.to}
+              onChange={(e) => setValues({ ...values, to: e.target.value })}
             />
           </FloatingLabel>
           <FloatingLabel controlId="to" label="Coin">
-            <Form.Select>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            <Form.Select
+              value={coin.toCoin}
+              onChange={(e) => setCoin({ ...coin, toCoin: e.target.value })}
+            >
+              <option value="USD">USD</option>
+              <option value="BTC">BTC</option>
+              <option value="ETH">ETH</option>
             </Form.Select>
           </FloatingLabel>
         </InputGroup>
@@ -72,54 +87,3 @@ function Converter() {
 }
 
 export default Converter;
-
-// import Dropdown from "react-bootstrap/Dropdown";
-// import DropdownButton from "react-bootstrap/DropdownButton";
-// import Form from "react-bootstrap/Form";
-// import InputGroup from "react-bootstrap/InputGroup";
-
-// function Converter() {
-//   return (
-//     <>
-//       <InputGroup className="mb-3">
-//         <Form.Control aria-label="Text input with dropdown button" />
-
-//         <DropdownButton
-//           variant="outline-secondary"
-//           title="Dropdown"
-//           id="input-group-dropdown-2"
-//           align="end"
-//         >
-//           <Dropdown.Item href="#">Action</Dropdown.Item>
-//           <Dropdown.Item href="#">Another action</Dropdown.Item>
-//           <Dropdown.Item href="#">Something else here</Dropdown.Item>
-//           <Dropdown.Divider />
-//           <Dropdown.Item href="#">Separated link</Dropdown.Item>
-//         </DropdownButton>
-//       </InputGroup>
-
-//       <InputGroup>
-//         <Form.Control aria-label="Text input with 2 dropdown buttons" />
-//       </InputGroup>
-
-//       <InputGroup className="mb-3">
-//         <Form.Control aria-label="Text input with dropdown button" />
-
-//         <DropdownButton
-//           variant="outline-secondary"
-//           title="Dropdown"
-//           id="input-group-dropdown-2"
-//           align="end"
-//         >
-//           <Dropdown.Item href="#">Action</Dropdown.Item>
-//           <Dropdown.Item href="#">Another action</Dropdown.Item>
-//           <Dropdown.Item href="#">Something else here</Dropdown.Item>
-//           <Dropdown.Divider />
-//           <Dropdown.Item href="#">Separated link</Dropdown.Item>
-//         </DropdownButton>
-//       </InputGroup>
-//     </>
-//   );
-// }
-
-// export default Converter;
