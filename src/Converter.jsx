@@ -1,6 +1,5 @@
 import React from "react";
 import { Row, Col, Form, FloatingLabel, InputGroup } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 // import Row from "react-bootstrap/Row";
 // import Col from "react-bootstrap/Col";
 // import FloatingLabel from "react-bootstrap/FloatingLabel";
@@ -22,9 +21,9 @@ const initialState = {
 
 function Converter() {
   // const [values, setValues] = React.useState(initialState);
-  const [state, setState] = React.useState(initialState);
   // const [coin, setCoin] = React.useState(initialCoins);
   // const [leftToRight, setLeftToRight] = React.useState(true);
+  const [state, setState] = React.useState(initialState);
 
   const handleClick = () => {
     // setValues({
@@ -46,7 +45,7 @@ function Converter() {
   };
 
   return (
-    <Row className="g-3 justify-content-center mb-4" >
+    <Row className="g-3 justify-content-center mb-4" style={{ width: '27rem' }} >
       <Col md={5} xs={12} >
         <InputGroup>
           <FloatingLabel controlId="fromInput" label="From">

@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 import CoinPage from "./CoinPage";
 import GlobalData from "./GlobalData";
 import Converter from "./Converter";
-// import SearchResult from "./SearchResult";
+import SearchResult from "./SearchResult";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <GlobalData />
       {/* <ListCoins /> */}
       <CoinPage />
-      {/* <SearchResult /> */}
+      <SearchResult />
     </Container>
   );
 }
