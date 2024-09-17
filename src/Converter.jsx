@@ -9,10 +9,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 const initialState = {
-  fromValue: 0,
-  toValue: 0,
-  fromCoin: 'BTC',
-  toCoin: 'USD',
+  // fromValue: 0,
+  // toValue: 0,
+  // fromCoin: 'BTC',
+  // toCoin: 'USD',
+  from: {
+    amount: 100,
+    coin: "USD",
+  },
+  to: {
+    amount: 500,
+    coin: "BTC",
+  },
 };
 
 // const fromCoin = "BTC";
@@ -20,51 +28,52 @@ const initialState = {
 // const initialCoins = { fromCoin, toCoin };
 
 function Converter() {
-  // const [values, setValues] = React.useState(initialState);
+  const [values, setValues] = React.useState(initialState);
   // const [coin, setCoin] = React.useState(initialCoins);
   // const [leftToRight, setLeftToRight] = React.useState(true);
-  const [state, setState] = React.useState(initialState);
+  // const [state, setState] = React.useState(initialState);
 
   const handleClick = () => {
-    // setValues({
-    //   from: values.to,
-    //   to: values.from,
-    // });
+    setValues({
+      from: values.to,
+      to: values.from,
+    });
     // setCoin({
     //   fromCoin: coin.toCoin,
     //   toCoin: coin.fromCoin,
     // });
     // setLeftToRight(!leftToRight);
-    setState((prevState) => ({
-      ...prevState,
-      fromValue: prevState.toValue,
-      toValue: prevState.fromValue,
-      fromCoin: prevState.toCoin,
-      toCoin: prevState.fromCoin,
-    }));
+    // setState((prevState) => ({
+    //   ...prevState,
+    //   fromValue: prevState.toValue,
+    //   toValue: prevState.fromValue,
+    //   fromCoin: prevState.toCoin,
+    //   toCoin: prevState.fromCoin,
+    // }));
   };
 
   return (
-    <Row className="g-3 justify-content-center mb-4" style={{ width: '27rem' }} >
-      <Col md={5} xs={12} >
+    <Row className="g-3 justify-content-center mb-4" style={{ width: "27rem" }}>
+      <Col md={5} xs={12}>
         <InputGroup>
           <FloatingLabel controlId="fromInput" label="From">
             <Form.Control
               type="text"
               placeholder="0"
-              // value={values.from}
+              value={values.from.amount}
+              defaultChecked={values.from.amount}
               // onChange={(e) => setValues({ ...values, from: e.target.value })}
-              value={state.fromValue}
-              onChange={(e) => setState({ ...state, fromValue: e.target.value })}
-              className="bg-dark text-light"
+              // value={state.fromValue}
+              // onChange={(e) => setState({ ...state, fromValue: e.target.value })}
+              // className="bg-dark text-light"
             />
           </FloatingLabel>
           <FloatingLabel controlId="from" label="Coin">
             <Form.Select
-              /* // value={coin.fromCoin}
+              value={values.from.coin}
               // onChange={(e) => setCoin({ ...coin, fromCoin: e.target.value })} */
-              value={state.fromCoin}
-              onChange={(e) => setState({ ...state, fromCoin: e.target.value })}
+              // value={state.fromCoin}
+              // onChange={(e) => setState({ ...state, fromCoin: e.target.value })}
             >
               <option value="BTC">BTC</option>
               <option value="USD">USD</option>
@@ -73,11 +82,16 @@ function Converter() {
           </FloatingLabel>
         </InputGroup>
       </Col>
-      <Col md={2} xs={12} className="text-center d-flex align-items-center justify-content-center">
+      <Col
+        md={2}
+        xs={12}
+        className="text-center d-flex align-items-center justify-content-center"
+      >
         <FontAwesomeIcon
           icon={faArrowsRotate}
           onClick={handleClick}
-          style={{ fontSize: "24px", cursor: "pointer", color: "#ffffff" }} />
+          style={{ fontSize: "24px", cursor: "pointer", color: "#ffffff" }}
+        />
       </Col>
       <Col md={5} sm={12}>
         <InputGroup>
@@ -85,14 +99,14 @@ function Converter() {
             <Form.Control
               type="text"
               placeholder="0"
-              value={state.toValue}
-              onChange={(e) => setState({ ...state, toValue: e.target.value })}
+              value={values.to.amount}
+              // onChange={(e) => setState({ ...state, toValue: e.target.value })}
             />
           </FloatingLabel>
           <FloatingLabel controlId="to" label="Coin">
             <Form.Select
-              value={state.toCoin}
-              onChange={(e) => setState({ ...state, toCoin: e.target.value })}
+              value={values.to.coin}
+              // onChange={(e) => setState({ ...state, toCoin: e.target.value })}
               className="bg-dark text-light"
             >
               <option value="USD">USD</option>
