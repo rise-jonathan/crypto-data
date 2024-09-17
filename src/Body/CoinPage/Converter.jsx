@@ -9,47 +9,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 
 const initialState = {
-  // fromValue: 0,
-  // toValue: 0,
-  // fromCoin: 'BTC',
-  // toCoin: 'USD',
   from: {
-    amount: 100,
+    amount: 0,
     coin: "USD",
   },
   to: {
-    amount: 500,
+    amount: 0,
     coin: "BTC",
   },
 };
 
-// const fromCoin = "BTC";
-// const toCoin = "USD";
-// const initialCoins = { fromCoin, toCoin };
-
 function Converter() {
   const [values, setValues] = React.useState(initialState);
-  // const [coin, setCoin] = React.useState(initialCoins);
-  // const [leftToRight, setLeftToRight] = React.useState(true);
-  // const [state, setState] = React.useState(initialState);
 
   const handleClick = () => {
     setValues({
       from: values.to,
       to: values.from,
     });
-    // setCoin({
-    //   fromCoin: coin.toCoin,
-    //   toCoin: coin.fromCoin,
-    // });
-    // setLeftToRight(!leftToRight);
-    // setState((prevState) => ({
-    //   ...prevState,
-    //   fromValue: prevState.toValue,
-    //   toValue: prevState.fromValue,
-    //   fromCoin: prevState.toCoin,
-    //   toCoin: prevState.fromCoin,
-    // }));
+  };
+
+  const handleOnChange = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+
+    setValues({
+      ...values,
+      [field]: {
+        ...values[field],
+        amount: value,
+      },
+    });
+  };
+
+  const handleOnSelect = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
+
+    setValues({
+      ...values,
+      [field]: {
+        ...values[field],
+        coin: value,
+      },
+    });
   };
 
   return (
@@ -58,22 +61,19 @@ function Converter() {
         <InputGroup>
           <FloatingLabel controlId="fromInput" label="From">
             <Form.Control
+              name="from"
               type="text"
               placeholder="0"
               value={values.from.amount}
-              defaultChecked={values.from.amount}
-              // onChange={(e) => setValues({ ...values, from: e.target.value })}
-              // value={state.fromValue}
-              // onChange={(e) => setState({ ...state, fromValue: e.target.value })}
+              onChange={handleOnChange}
               // className="bg-dark text-light"
             />
           </FloatingLabel>
           <FloatingLabel controlId="from" label="Coin">
             <Form.Select
+              name="from"
               value={values.from.coin}
-              // onChange={(e) => setCoin({ ...coin, fromCoin: e.target.value })} */
-              // value={state.fromCoin}
-              // onChange={(e) => setState({ ...state, fromCoin: e.target.value })}
+              onChange={handleOnSelect}
             >
               <option value="BTC">BTC</option>
               <option value="USD">USD</option>
@@ -90,24 +90,26 @@ function Converter() {
         <FontAwesomeIcon
           icon={faArrowsRotate}
           onClick={handleClick}
-          style={{ fontSize: "24px", cursor: "pointer", color: "#ffffff" }}
+          style={{ fontSize: "24px", cursor: "pointer", color: "#000" }}
         />
       </Col>
       <Col md={5} sm={12}>
         <InputGroup>
           <FloatingLabel controlId="toInput" label="To">
             <Form.Control
+              name="to"
               type="text"
               placeholder="0"
               value={values.to.amount}
-              // onChange={(e) => setState({ ...state, toValue: e.target.value })}
+              onChange={handleOnChange}
             />
           </FloatingLabel>
           <FloatingLabel controlId="to" label="Coin">
             <Form.Select
+              name="to"
               value={values.to.coin}
-              // onChange={(e) => setState({ ...state, toCoin: e.target.value })}
-              className="bg-dark text-light"
+              onChange={handleOnSelect}
+              // className="bg-dark text-light"
             >
               <option value="USD">USD</option>
               <option value="BTC">BTC</option>
