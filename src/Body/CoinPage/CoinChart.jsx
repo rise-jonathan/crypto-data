@@ -7,6 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+// import ModalChart from "../ModalChart";
 
 const data = [
   {
@@ -67,6 +68,7 @@ function CoinChart() {
           bottom: 0,
         }}
       >
+        {/* <ModalChart /> */}
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
