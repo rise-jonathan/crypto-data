@@ -1,11 +1,18 @@
+import React from "react";
 import CoinPriceSection from "./CoinPriceSection";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import CoinMetrics from "./CoinMetrics";
 import CoinChart from "./CoinChart";
 import ChartPeriods from "./ChartPeriods";
-
+import Button from "react-bootstrap/Button";
+import ChartModal from "./ChartModal";
 function CoinPage() {
+  const [chartModalShow, setChartModalShow, children] = React.useState(false);
+
+  const handleShow = () => setChartModalShow(true);
+  const handleClose = () => setChartModalShow(false);
+
   return (
     <>
       <CoinPriceSection />
@@ -15,9 +22,22 @@ function CoinPage() {
         </Col>
         <Col md={8}>
           <CoinChart />
-          <ChartPeriods />
+          <Row>
+            <Col>
+              <ChartPeriods />
+            </Col>
+            <Col>
+              <Button onClick={handleShow} variant="primary">
+                Zoom
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
+      <ChartModal show={chartModalShow} handleClose={handleClose}>
+        <CoinChart />
+        <ChartPeriods />
+      </ChartModal>
     </>
   );
 }

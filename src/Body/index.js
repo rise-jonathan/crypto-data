@@ -1,1 +1,1 @@
-export { defaults } from "./Body";
+export { default } from "./Body";
