@@ -11,3 +11,9 @@ export const getGlobalData = async () => {
 
   return await response.json();
 };
+
+export const getCoinById = async (id) => {
+  const response = await fetch(`${apiUrl}/coins/${id}`);
+
+  return await response.json();
+};
