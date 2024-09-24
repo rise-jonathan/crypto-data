@@ -19,7 +19,7 @@ function CoinPage() {
     getCoinById(`btc-bitcoin`).then(setCoinData);
   }, []);
 
-  console.log(coinData);
+  // console.log(coinData);
 
   return (
     <>
