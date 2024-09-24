@@ -1,18 +1,23 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 import { getCoinList } from "../services/api";
+import Alert from "react-bootstrap/Alert";
+import PriceNumber from "./PriceNumber";
 
-function ListCoins() {
+function ListCoins({ selectedCurrency }) {
   const [coinList, setCoinsList] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // getCoinList().then((data) => setCoinsList(data));
-    getCoinList().then((data) => {
+    setIsLoading(true);
+    getCoinList(selectedCurrency).then((data) => {
       setCoinsList(data.slice(0, 100));
+      setIsLoading(false);
     });
-  }, []);
+  }, [selectedCurrency]);
 
   // console.log(coinList);
+  if (isLoading) return <Alert key={"primary"}>Loading ...</Alert>;
 
   return (
     <Table striped bordered hover>
@@ -25,8 +30,8 @@ function ListCoins() {
           <th>24h</th>
           <th>7d</th>
           <th>Volume(24h)</th>
-          <th>Liquidity</th>
-          <th>MarketCap</th>
+          <th>Market Cap</th>
+          <th>Max supply</th>
         </tr>
       </thead>
       <tbody>
@@ -34,12 +39,19 @@ function ListCoins() {
           <tr key={coin.rank}>
             <td>{coin.rank}</td>
             <td>{coin.name}</td>
-            <td>{coin.symbol}</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+              <PriceNumber value={coin.quotes[selectedCurrency]?.price} />
+            </td>
+            <td>{coin.quotes[selectedCurrency]?.percent_change_1h}</td>
+            <td>{coin.quotes[selectedCurrency]?.percent_change_24h}</td>
+            <td>{coin.quotes[selectedCurrency]?.percent_change_7d}</td>
+            <td>
+              <PriceNumber value={coin.quotes[selectedCurrency]?.volume_24h} />
+            </td>
+            <td>
+              <PriceNumber value={coin.quotes[selectedCurrency]?.market_cap} />
+            </td>
+            <td>{coin.max_supply}</td>
             <td></td>
           </tr>
         ))}
