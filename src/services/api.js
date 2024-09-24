@@ -6,24 +6,14 @@ export const getCoinList = async () => {
   return await response.json();
 };
 
-
 export const getGlobalData = async () => {
   const response = await fetch(`${apiUrl}/global`);
 
   return await response.json();
 };
 
-
-export const getCoinInfo = async (coinId) => {
-  const response = await fetch(`${apiUrl}/coins/${coinId}`);
-
-  return await response.json();
-};
-
-
-export const getCoinMarketData = async (coinId) => {
-  const response = await fetch(`${apiUrl}/tickers/${coinId}`);
+export const getCoinById = async (id) => {
+  const response = await fetch(`${apiUrl}/coins/${id}`);
 
   return await response.json();
 };
-
