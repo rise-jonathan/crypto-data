@@ -1,9 +1,14 @@
 import React from "react";
 import { NumericFormat } from "react-number-format";
 
-function PriceNumber({ value }) {
+function PriceNumber({ value, symbol }) {
   return (
-    <NumericFormat value={value} thousandSeparator=" " displayType="text" />
+    <NumericFormat
+      value={value}
+      thousandSeparator=" "
+      displayType="text"
+      prefix={symbol}
+    />
   );
 }
 

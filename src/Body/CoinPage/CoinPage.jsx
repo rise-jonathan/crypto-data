@@ -8,6 +8,7 @@ import ChartPeriods from "./ChartPeriods";
 import Button from "react-bootstrap/Button";
 import ChartModal from "./ChartModal";
 import { getCoinById } from "../../services/api";
+
 function CoinPage() {
   const [chartModalShow, setChartModalShow] = React.useState(false);
   const [coinData, setCoinData] = React.useState({});
@@ -19,7 +20,7 @@ function CoinPage() {
     getCoinById(`btc-bitcoin`).then(setCoinData);
   }, []);
 
-  // console.log(coinData);
+  console.log(coinData);
 
   return (
     <>
