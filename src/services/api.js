@@ -21,3 +21,9 @@ export const getCoinById = async (id) => {
 
   return await response.json();
 };
+
+export const getCoinMetricsById = async (id) => {
+  const response = await fetch(`${apiUrl}/tickers/${id}`);
+
+  return await response.json();
+};

@@ -1,9 +1,16 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 
-function CoinMetrics({ name, symbol }) {
-  const [coinInfo, setCoinInfo] = React.useState([]);
-  const [marketData, setMarketData] = React.useState([]);
+function CoinMetrics({
+  name,
+  symbol,
+  market_cap,
+  percent_change_1h,
+  volume_24h,
+  circulating_supply,
+}) {
+  // const [coinInfo, setCoinInfo] = React.useState([]);
+  // const [marketData, setMarketData] = React.useState([]);
 
   return (
     <>
@@ -15,25 +22,23 @@ function CoinMetrics({ name, symbol }) {
         <tbody>
           <tr>
             <td>Market Cap</td>
-            <td>{marketData.rank}</td>
+            <td>{market_cap ? `$${market_cap}` : "N/A"}</td>
           </tr>
           <tr>
             <td>All Time High</td>
-            <td>$ {marketData.max_supply}</td>
+            <td>{percent_change_1h ? `${percent_change_1h}%` : "N/A"}</td>
           </tr>
           <tr>
             <td>Volume (24h)</td>
-            <td>${marketData.total_supply}</td>
+            <td>{volume_24h ? `$${volume_24h}` : "N/A"}</td>
           </tr>
           <tr>
             <td>Vol / M Cap (24h)</td>
-            <td>%{marketData.volume_24h_usd}</td>
+            <td></td>
           </tr>
           <tr>
             <td>Circulating Supply</td>
-            <td>
-              {marketData.circulating_supply} {coinInfo.symbol}
-            </td>
+            <td>{circulating_supply ? circulating_supply : "N/A"}</td>
           </tr>
           <tr></tr>
         </tbody>
@@ -41,5 +46,4 @@ function CoinMetrics({ name, symbol }) {
     </>
   );
 }
-
 export default CoinMetrics;

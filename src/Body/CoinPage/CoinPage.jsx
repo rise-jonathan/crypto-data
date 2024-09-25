@@ -7,27 +7,32 @@ import CoinChart from "./CoinChart";
 import ChartPeriods from "./ChartPeriods";
 import Button from "react-bootstrap/Button";
 import ChartModal from "./ChartModal";
-import { getCoinById } from "../../services/api";
+import { getCoinMetricsById } from "../../services/api";
 
-function CoinPage() {
+function CoinPage({ selectedCurrency }) {
   const [chartModalShow, setChartModalShow] = React.useState(false);
-  const [coinData, setCoinData] = React.useState({});
+  const [coinMetrics, setCoinMetrics] = React.useState({});
 
   const handleShow = () => setChartModalShow(true);
   const handleClose = () => setChartModalShow(false);
 
   React.useEffect(() => {
-    getCoinById(`btc-bitcoin`).then(setCoinData);
+    getCoinMetricsById(`btc-bitcoin`).then(setCoinMetrics);
   }, []);
-
-  console.log(coinData);
 
   return (
     <>
       <CoinPriceSection />
       <Row>
         <Col md={4}>
-          <CoinMetrics {...coinData} />
+          <CoinMetrics
+            name={coinMetrics.name}
+            symbol={coinMetrics.symbol}
+            market_cap={coinMetrics.quotes?.USD?.market_cap}
+            percent_change_1h={coinMetrics.quotes?.USD?.percent_change_1h}
+            volume_24h={coinMetrics.quotes?.USD?.volume_24h}
+            circulating_supply={coinMetrics.circulating_supply}
+          />
         </Col>
         <Col md={8}>
           <CoinChart />
