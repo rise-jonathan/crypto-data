@@ -20,14 +20,17 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
           >
             <Nav.Link href="#action1">Home</Nav.Link>
             <Nav.Link href="#action2">Link</Nav.Link>
-            <NavDropdown title="Currency" id="navbarScrollingDropdown">
+            <NavDropdown
+              title={`${selectedCurrency.name}`}
+              id="navbarScrollingDropdown"
+            >
               {currencies.map((currency) => (
                 <NavDropdown.Item
-                  active={selectedCurrency === currency}
-                  key={currency}
+                  active={selectedCurrency.name === currency.name}
+                  key={currency.name}
                   onClick={() => setSelectedCurrency(currency)}
                 >
-                  {currency}
+                  {currency.name} {currency.symbol}
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
