@@ -8,7 +8,7 @@ const Body = (props) => {
     <>
       <GlobalData />
       <ListCoins {...props} />
-      <CoinPage />
+      {/* <CoinPage /> */}
     </>
   );
 };
