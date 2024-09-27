@@ -54,7 +54,7 @@ const data = [
   },
 ];
 
-function CoinChart() {
+function CoinChart({ data }) {
   return (
     <ResponsiveContainer width="100%" height={400}>
       <AreaChart
@@ -70,10 +70,10 @@ function CoinChart() {
       >
         {/* <ModalChart /> */}
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="timestamp" />
+        <YAxis dataKey="price" />
         <Tooltip />
-        <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
+        <Area type="monotone" dataKey="price" stroke="#8884d8" fill="#8884d8" />
       </AreaChart>
     </ResponsiveContainer>
   );
