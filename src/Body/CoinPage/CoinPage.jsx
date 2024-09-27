@@ -10,6 +10,8 @@ import ChartModal from "./ChartModal";
 import { getCoinById, getHistoricalData } from "../../services/api";
 import { periods } from "./constants";
 import moment from "moment";
+import { useParams } from "react-router-dom";
+import Converter from "./Converter";
 
 function CoinPage({ selectedCurrency }) {
   const [chartModalShow, setChartModalShow] = React.useState(false);
@@ -17,16 +19,18 @@ function CoinPage({ selectedCurrency }) {
   const [historicalData, setHistoricalData] = React.useState([]);
   const [selectedPeriod, setSelectedPeriod] = React.useState(periods[0]);
 
+  const { coinId } = useParams();
+
   const handleShow = () => setChartModalShow(true);
   const handleClose = () => setChartModalShow(false);
 
   React.useEffect(() => {
-    getCoinById("btc-bitcoin", selectedCurrency.name).then(setCoinData);
-  }, [selectedCurrency]);
+    getCoinById(coinId, selectedCurrency.name).then(setCoinData);
+  }, [selectedCurrency, coinId]);
 
   React.useEffect(() => {
     getHistoricalData({
-      id: "btc-bitcoin",
+      id: coinId,
       currency: selectedCurrency.name,
       start: selectedPeriod.start(),
       interval: selectedPeriod.interval,
@@ -38,7 +42,7 @@ function CoinPage({ selectedCurrency }) {
         }))
       )
     );
-  }, [selectedPeriod, selectedCurrency]);
+  }, [selectedPeriod, selectedCurrency, coinId]);
 
   return (
     <>
@@ -46,6 +50,7 @@ function CoinPage({ selectedCurrency }) {
       <Row>
         <Col md={4}>
           <CoinMetrics {...coinData} currency={selectedCurrency} />
+          <Converter />
         </Col>
         <Col md={8}>
           <CoinChart data={historicalData} />
