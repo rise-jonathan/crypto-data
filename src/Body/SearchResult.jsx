@@ -1,9 +1,19 @@
+import React from "react";
 import Table from "react-bootstrap/Table";
+import { useParams } from "react-router-dom";
+import { getSearch } from "../services/api";
 
 function SearchResult() {
+  const { q } = useParams();
+  const [result, setResult] = React.useState({});
+
+  React.useEffect(() => {
+    getSearch(q).then(setResult);
+  }, [q]);
+
   return (
     <>
-      <h3>Coin Search Result</h3>
+      <h3>Coin Search Result: {q}</h3>
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
@@ -14,12 +24,13 @@ function SearchResult() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Bitcoin</td>
-            <td>BTC</td>
-            <td>1</td>
-          </tr>
+          {result.currencies?.map((currency) => (
+            <tr key={currency.id}>
+              <td>{currency.rank}</td>
+              <td> {currency.name}</td>
+              <td> {currency.symbol}</td>
+            </tr>
+          ))}
           <tr>
             <td>2</td>
             <td>Ethereum</td>
@@ -40,7 +51,7 @@ function SearchResult() {
           </tr>
           <tr>
             <td>5</td>
-            <td>Solana</td>
+            <td>Sol</td>
             <td>SOL</td>
             <td>5</td>
           </tr>

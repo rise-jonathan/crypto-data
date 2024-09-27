@@ -3,10 +3,13 @@ import Table from "react-bootstrap/Table";
 import { getCoinList } from "../services/api";
 import Alert from "react-bootstrap/Alert";
 import PriceNumber from "./PriceNumber";
+import { useNavigate } from "react-router-dom";
 
 function ListCoins({ selectedCurrency }) {
   const [coinList, setCoinsList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -36,7 +39,7 @@ function ListCoins({ selectedCurrency }) {
       </thead>
       <tbody>
         {coinList.map((coin) => (
-          <tr key={coin.rank}>
+          <tr key={coin.rank} onClick={() => navigate("/coin/" + coin.id)}>
             <td>{coin.rank}</td>
             <td>{coin.name}</td>
             <td>
