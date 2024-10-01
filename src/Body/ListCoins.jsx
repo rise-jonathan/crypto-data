@@ -20,9 +20,7 @@ function ListCoins({ selectedCurrency }) {
         setIsLoading(false);
       })
       .catch((error) => {
-        setErrorMessage(
-          "Coin list id not available. Error: " + error.toString()
-        );
+        setErrorMessage("Coin list id not available. - " + error.toString());
       })
       .finally(() => setIsLoading(false));
   }, [selectedCurrency.name]);
