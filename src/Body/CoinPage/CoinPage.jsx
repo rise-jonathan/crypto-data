@@ -12,12 +12,14 @@ import { periods } from "./constants";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import Converter from "./Converter";
+import ErrorModal from "../ErrorModal";
 
 function CoinPage({ selectedCurrency }) {
   const [chartModalShow, setChartModalShow] = React.useState(false);
   const [coinData, setCoinData] = React.useState([]);
   const [historicalData, setHistoricalData] = React.useState([]);
   const [selectedPeriod, setSelectedPeriod] = React.useState(periods[0]);
+  const [errorMessage, setErrorMessage] = React.useState(null);
 
   const { coinId } = useParams();
 
@@ -34,14 +36,18 @@ function CoinPage({ selectedCurrency }) {
       currency: selectedCurrency.name,
       start: selectedPeriod.start(),
       interval: selectedPeriod.interval,
-    }).then((data) =>
-      setHistoricalData(
-        data?.map(({ timestamp, ...rest }) => ({
-          ...rest,
-          timestamp: moment(timestamp).format(selectedPeriod.format),
-        }))
+    })
+      .then((data) =>
+        setHistoricalData(
+          data?.map(({ timestamp, ...rest }) => ({
+            ...rest,
+            timestamp: moment(timestamp).format(selectedPeriod.format),
+          }))
+        )
       )
-    );
+      .catch((error) => {
+        setErrorMessage("Historical data not available." + error.toString());
+      });
   }, [selectedPeriod, selectedCurrency, coinId]);
 
   return (
@@ -76,6 +82,11 @@ function CoinPage({ selectedCurrency }) {
           setSelectedPeriod={setSelectedPeriod}
         />
       </ChartModal>
+      <ErrorModal
+        errorMessage={errorMessage}
+        show={!!errorMessage}
+        handleClose={() => setErrorMessage(null)}
+      />
     </>
   );
 }

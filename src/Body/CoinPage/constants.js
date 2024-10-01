@@ -30,7 +30,7 @@ export const periods = [
   },
   {
     label: "1y",
-    start: () => toRequestUnix(moment().subtract(365, "days")),
+    start: () => toRequestUnix(moment().subtract(390, "days")),
     interval: "7d",
     format: "DD MMM",
   },
