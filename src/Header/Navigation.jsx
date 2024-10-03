@@ -6,9 +6,13 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { currencies } from "../constants";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedCurrency } from "../services/store";
 
-function Navigation({ selectedCurrency, setSelectedCurrency }) {
+function Navigation() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selectedCurrency = useSelector((state) => state.selectedCurrency);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,7 +27,7 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-4">
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="#">CRYPTO data</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -34,7 +38,7 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
             <Link to="/" className="nav-link">
               Home
             </Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
+            {/* <Nav.Link href="#action2">Link</Nav.Link> */}
             <NavDropdown
               title={`${selectedCurrency.name}`}
               id="navbarScrollingDropdown"
@@ -43,7 +47,7 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
                 <NavDropdown.Item
                   active={selectedCurrency.name === currency.name}
                   key={currency.name}
-                  onClick={() => setSelectedCurrency(currency)}
+                  onClick={() => dispatch(setSelectedCurrency(currency))}
                 >
                   {currency.name} {currency.symbol}
                 </NavDropdown.Item>

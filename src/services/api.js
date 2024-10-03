@@ -1,6 +1,6 @@
 const apiUrl = "https://api.coinpaprika.com/v1";
 
-// COIN LIST 
+// COIN LIST
 export const getCoinList = async (currency) => {
   const params = new URLSearchParams({
     quotes: currency,
@@ -11,7 +11,7 @@ export const getCoinList = async (currency) => {
   return await response.json();
 };
 
-// GLOBAL 
+// GLOBAL
 export const getGlobalData = async () => {
   const response = await fetch(`${apiUrl}/global`);
 
@@ -59,7 +59,11 @@ export const getSearch = async (q) => {
 };
 
 // CURRENCIES EXCHANGE
-export const getConverter = async ({ base_currency_id, quote_currency_id, amount, }) => {
+export const getConverter = async ({
+  base_currency_id,
+  quote_currency_id,
+  amount,
+}) => {
   const params = new URLSearchParams({
     base_currency_id,
     quote_currency_id,

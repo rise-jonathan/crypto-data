@@ -4,12 +4,16 @@ import { getCoinList } from "../services/api";
 import Alert from "react-bootstrap/Alert";
 import PriceNumber from "./PriceNumber";
 import { useNavigate } from "react-router-dom";
-import ErrorModal from "./ErrorModal";
+import { useSelector, useDispatch } from "react-redux";
+import { setErrorMessage } from "../services/store";
 
-function ListCoins({ selectedCurrency }) {
+function ListCoins() {
+  const dispatch = useDispatch();
   const [coinList, setCoinsList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [errorMessage, setErrorMessage] = React.useState(null);
+
+  const selectedCurrency = useSelector((state) => state.selectedCurrency);
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -20,7 +24,9 @@ function ListCoins({ selectedCurrency }) {
         setIsLoading(false);
       })
       .catch((error) => {
-        setErrorMessage("Coin list is not available. - " + error.toString());
+        dispatch(
+          setErrorMessage("Coin list is not available. - " + error.toString())
+        );
       })
       .finally(() => setIsLoading(false));
   }, [selectedCurrency.name]);
@@ -70,16 +76,10 @@ function ListCoins({ selectedCurrency }) {
                 />
               </td>
               <td>{coin.max_supply}</td>
-              <td></td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <ErrorModal
-        errorMessage={errorMessage}
-        show={!!errorMessage}
-        handleClose={() => setErrorMessage(null)}
-      />
     </>
   );
 }
