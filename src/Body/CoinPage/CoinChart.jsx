@@ -56,26 +56,56 @@ const data = [
 
 function CoinChart({ data }) {
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <AreaChart
-        width={500}
-        height={400}
-        data={data}
-        margin={{
-          top: 10,
-          right: 30,
-          left: 0,
-          bottom: 0,
-        }}
-      >
-        {/* <ModalChart /> */}
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="timestamp" />
-        <YAxis dataKey="price" />
-        <Tooltip />
-        <Area type="monotone" dataKey="price" stroke="#8884d8" fill="#8884d8" />
-      </AreaChart>
-    </ResponsiveContainer>
+    <div
+      style={{
+        backgroundColor: "#1B2A41",
+        padding: "20px",
+        borderRadius: "10px",
+      }}
+    >
+      {" "}
+      {/* Текущий фон */}
+      <ResponsiveContainer width="100%" height={400}>
+        <AreaChart
+          width={500}
+          height={400}
+          data={data}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          {/* Сетка с линиями */}
+          <CartesianGrid stroke="#3A506B" strokeDasharray="3 3" />
+
+          {/* Оси с яркими цветами */}
+          <XAxis dataKey="timestamp" stroke="#A6E3E9" />
+          <YAxis dataKey="price" stroke="#A6E3E9" />
+
+          {/* Настройка тултипа */}
+          <Tooltip
+            contentStyle={{
+              backgroundColor: "#172A3A",
+              borderColor: "#444",
+              color: "#fff",
+            }}
+            itemStyle={{ color: "#FFD700" }}
+          />
+
+          {/* Яркая линия и немного более насыщенная заливка под кривой */}
+          <Area
+            type="monotone"
+            dataKey="price"
+            stroke="#FFD700"
+            strokeWidth={2}
+            fillOpacity={0.3}
+            fill="rgba(255, 215, 0, 0.3)" /* Более яркая заливка */
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
