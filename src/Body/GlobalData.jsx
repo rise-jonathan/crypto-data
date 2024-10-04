@@ -10,7 +10,7 @@ function GlobalData() {
   }, []);
 
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover className="table-custom">
       <tbody>
         <tr>
           <td>BTC</td>

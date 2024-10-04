@@ -4,10 +4,12 @@ import { currencies } from "../constants";
 const initialState = {
   selectedCurrency: currencies[0],
   errorMessage: null,
+  coinList: [],
 };
 
 export const setSelectedCurrency = createAction("setSelectedCurrency");
 export const setErrorMessage = createAction("setErrorMessage");
+export const setCoinList = createAction("setCoinList");
 
 const appReducer = createReducer(initialState, (builder) => {
   builder
@@ -16,6 +18,9 @@ const appReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setErrorMessage, (state, action) => {
       state.errorMessage = action.payload;
+    })
+    .addCase(setCoinList, (state, action) => {
+      state.coinList = action.payload;
     });
 });
 

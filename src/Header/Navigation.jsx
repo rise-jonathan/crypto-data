@@ -25,9 +25,15 @@ function Navigation() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary mb-4">
+    <Navbar
+      expand="lg"
+      className="navbar"
+      style={{ backgroundColor: "rgba(15, 30, 50, 0.9)", color: "#FFD700" }}
+    >
       <Container fluid>
-        <Navbar.Brand href="#">CRYPTO data</Navbar.Brand>
+        <Navbar.Brand className="navbar-brand" style={{ color: "#FFD700" }}>
+          CRYPTO EXCHANGE
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -38,13 +44,13 @@ function Navigation() {
             <Link to="/" className="nav-link">
               Home
             </Link>
-            {/* <Nav.Link href="#action2">Link</Nav.Link> */}
             <NavDropdown
               title={`${selectedCurrency.name}`}
               id="navbarScrollingDropdown"
             >
               {currencies.map((currency) => (
                 <NavDropdown.Item
+                  className="dropdown-item"
                   active={selectedCurrency.name === currency.name}
                   key={currency.name}
                   onClick={() => dispatch(setSelectedCurrency(currency))}
@@ -62,7 +68,7 @@ function Navigation() {
               aria-label="Search"
               name="q"
             />
-            <Button type="submit" variant="outline-success">
+            <Button type="submit" variant="outline-warning">
               Search
             </Button>
           </Form>

@@ -11,7 +11,7 @@ function ErrorModal() {
   const handleClose = () => dispatch(setErrorMessage(null));
 
   return (
-    <Modal show={!!errorMessage} onHide={handleClose}>
+    <Modal show={!!errorMessage} onHide={handleClose} className="error-modal">
       <Modal.Header closeButton>
         <Modal.Title>Error</Modal.Title>
       </Modal.Header>

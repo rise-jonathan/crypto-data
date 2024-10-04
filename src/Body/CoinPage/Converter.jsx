@@ -2,117 +2,106 @@ import React from "react";
 import { Row, Col, Form, FloatingLabel, InputGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
-import { getCoinList, getConverter } from "../../services/api";
+import { getPriceConverter } from "../../services/api";
+import { useSelector } from "react-redux";
 
 const initialState = {
   from: {
-    amount: 1,
+    amount: 0,
     coin: "btc-bitcoin",
   },
   to: {
-    amount: 1,
+    amount: 0,
     coin: "eth-ethereum",
   },
 };
 
 function Converter() {
+  console.log("Converter");
   const [values, setValues] = React.useState(initialState);
-  const [coinList, setCoinList] = React.useState([]);
+
+  const coinList = useSelector((state) => state.coinList);
 
   React.useEffect(() => {
-    const fetchCoins = async () => {
-      const coins = await getCoinList('EUR');
-      setCoinList(coins);
-    };
-
-    fetchCoins();
-  }, []);
-
-  React.useEffect(() => {
-    const fetchExchanges = async () => {
-      const result = await getConverter({
-        base_currency_id: values.from.coin,
-        quote_currency_id: values.to.coin,
+    (async () => {
+      // immediately invoked function
+      const data = await getPriceConverter({
+        baseCurrency: values.from.coin,
+        quoteCurrency: values.to.coin,
         amount: values.from.amount,
       });
 
-      setValues((prevValues) => ({
-        ...prevValues,
+      setValues({
+        ...values,
         to: {
-          ...prevValues.to,
-          amount: result.price || 0,
+          ...values.to,
+          amount: data.price,
         },
-      }));
-    };
-
-    if (values.from.amount && values.from.coin && values.to.coin) {
-      fetchExchanges();
-    }
+      });
+    })();
   }, [values.from.amount, values.from.coin, values.to.coin]);
 
-
   const handleClick = () => {
-    setValues((prevValues) => ({
-      from: prevValues.to,
-      to: prevValues.from,
-    }));
+    setValues({
+      from: values.to,
+      to: values.from,
+    });
   };
 
   const handleOnChange = (event) => {
     const field = event.target.name;
     const value = event.target.value;
 
-    setValues((prevValues) => ({
-      ...prevValues,
+    setValues({
+      ...values,
       [field]: {
-        ...prevValues[field],
-        amount: value || "",
+        ...values[field],
+        amount: value,
       },
-    }));
+    });
   };
-
 
   const handleOnSelect = (event) => {
     const field = event.target.name;
     const value = event.target.value;
 
-    setValues((prevValues) => ({
-      ...prevValues,
+    setValues({
+      ...values,
       [field]: {
-        ...setValues[field],
-        coin: value || "",
+        ...values[field],
+        coin: value,
       },
-    }));
+    });
   };
+
+  if (!coinList.length) return null;
 
   return (
     <Row className="g-3 justify-content-center mb-4" style={{ width: "27rem" }}>
       <Col md={5} xs={12}>
         <InputGroup>
-          <FloatingLabel controlId="from" label="From">
+          <FloatingLabel controlId="fromInput" label="From">
             <Form.Control
               name="from"
               type="text"
               placeholder="0"
               value={values.from.amount || ""}
               onChange={handleOnChange}
-            // className="bg-dark text-light"
             />
           </FloatingLabel>
-          <FloatingLabel controlId="fromCoin" label="Coin">
+          <FloatingLabel controlId="from" label="Coin">
             <Form.Select
               name="from"
               value={values.from.coin || ""}
               onChange={handleOnSelect}
             >
-              {/* <option value="BTC">BTC</option>
-              <option value="USD">USD</option>
-              <option value="ETH">ETH</option> */}
               {coinList.map((coin) => (
                 <option key={coin.id} value={coin.id}>
-                  {coin.name} ({coin.symbol})
+                  {coin.name}
+                  {/* ({coin.symbol}) */}
                 </option>
-              ))};
+              ))}
+              ;
             </Form.Select>
           </FloatingLabel>
         </InputGroup>
@@ -137,23 +126,21 @@ function Converter() {
               placeholder="0"
               value={values.to.amount || ""}
               onChange={handleOnChange}
-
             />
           </FloatingLabel>
-          <FloatingLabel controlId="toCoin" label="Coin">
+          <FloatingLabel controlId="to" label="Coin">
             <Form.Select
               name="to"
               value={values.to.coin || ""}
               onChange={handleOnSelect}
             >
-              {/* <option value="USD">USD</option>
-              <option value="BTC">BTC</option>
-              <option value="ETH">ETH</option> */}
               {coinList.map((coin) => (
                 <option key={coin.id} value={coin.id}>
-                  {coin.name} ({coin.symbol})
+                  {coin.name}
+                  {/* ({coin.symbol}) */}
                 </option>
-              ))};
+              ))}
+              ;
             </Form.Select>
           </FloatingLabel>
         </InputGroup>

@@ -5,14 +5,14 @@ import Alert from "react-bootstrap/Alert";
 import PriceNumber from "./PriceNumber";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setErrorMessage } from "../services/store";
+import { setErrorMessage, setCoinList } from "../services/store";
 
 function ListCoins() {
   const dispatch = useDispatch();
-  const [coinList, setCoinsList] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   const selectedCurrency = useSelector((state) => state.selectedCurrency);
+  const coinList = useSelector((state) => state.coinList);
 
   const navigate = useNavigate();
 
@@ -20,8 +20,8 @@ function ListCoins() {
     setIsLoading(true);
     getCoinList(selectedCurrency.name)
       .then((data) => {
-        setCoinsList(data.slice(0, 100));
-        setIsLoading(false);
+        dispatch(setCoinList(data.slice(0, 100)));
+        // setIsLoading(false);
       })
       .catch((error) => {
         dispatch(
@@ -35,7 +35,7 @@ function ListCoins() {
 
   return (
     <>
-      <Table striped bordered hover>
+      <Table striped bordered hover className="table-crypto">
         <thead>
           <tr>
             <th>#</th>

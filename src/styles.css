@@ -1,0 +1,249 @@
+/* style.css */
+/* Основной фон страницы */
+body {
+    background: linear-gradient(180deg, rgba(10, 25, 45, 1), rgba(15, 30, 50, 1));
+    color: #ffffff;
+    /* Белый текст по умолчанию */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* NAVBAR */
+/* Основной стиль для навигации */
+.navbar-brand {
+    font-size: 1.5rem;
+    /* Устанавливаем размер шрифта для Navbar.Brand */
+    font-weight: bold;
+    /* Устанавливаем жирный шрифт для выделения */
+    color: #FFAA00;
+    /* Цвет текста */
+}
+
+.nav-link {
+    font-size: 1.1rem;
+    /* Устанавливаем одинаковый размер шрифта для ссылок */
+    color: #FFD700;
+    /* Цвет текста для ссылок */
+    padding: 0.5rem 1rem;
+    /* Устанавливаем отступы для ссылки */
+}
+
+.dropdown-item {
+    font-size: 1.1rem;
+    /* Устанавливаем размер шрифта для выпадающих пунктов */
+    color: #FFAA00;
+    /* Цвет текста для выпадающих пунктов */
+}
+
+.navbar a {
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ffffff;
+    /* Белый текст при наведении */
+    background-color: #FFAA00;
+    /* Темный золотой фон при наведении */
+    text-decoration: underline;
+    /* Подчеркивание при наведении */
+}
+
+/* Стиль для выпадающего меню */
+.dropdown-item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #FFAA00;
+    /* Темный золотой фон при наведении */
+    color: #ffffff;
+    /* Белый текст при наведении */
+}
+
+/* Для символа, который отображается в первой строке */
+.navbar .nav-link {
+    color: #FFD700;
+    /* Установите нужный цвет */
+}
+
+.navbar .nav-link:hover {
+    color: #000;
+    /* Белый цвет при наведении */
+    background-color: #FFAA00;
+    /* Темный золотой фон при наведении */
+}
+
+/* Для первого элемента выпадающего меню */
+.dropdown-item:first-child:hover {
+    background-color: #FFAA00;
+    /* Темный золотой фон для первого элемента */
+    color: #ffffff;
+    /* Белый текст для первого элемента */
+}
+
+.dropdown-item.active {
+    background-color: #FFAA00;
+}
+
+.navbar-toggler {
+    background-color: #FFAA00;
+}
+
+
+/* TABLES */
+/* Таблица с криптоданными */
+.table-crypto {
+    background-color: rgba(15, 30, 50, 1);
+    color: rgba(255, 255, 255, 0.9);
+    /* Белый текст */
+    border-spacing: 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-crypto th,
+.table-crypto td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    text-align: left;
+    color: #ffffff;
+    /* Белый текст для ячеек */
+}
+
+/* Заголовки таблиц */
+.table-crypto th {
+    background-color: rgba(30, 50, 70, 1);
+    color: #FFD700;
+    /* Золотой текст для заголовков */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Ячейки таблицы */
+.table-crypto td {
+    background-color: rgba(20, 40, 60, 1);
+    color: #ffffff;
+    /* Белый текст для ячеек */
+}
+
+/* Hover эффект для строк таблицы */
+.table-crypto tr:hover td {
+    background-color: rgba(35, 55, 75, 1);
+    color: #FFD700;
+    /* Золотой текст при наведении */
+    text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
+    /* Эффект glow */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Заголовок страницы */
+h1 {
+    font-size: 36px;
+    color: #FFD700;
+    /* Золотой текст */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h4 {
+    color: #FFD700;
+}
+
+/* Кнопки и ссылки */
+button,
+a {
+    background-color: #FFD700;
+    color: #0A192D;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover,
+a:hover {
+    background-color: #FFC107;
+    color: #ffffff;
+    /* Белый текст при наведении */
+    box-shadow: 0px 0px 8px rgba(255, 255, 0, 0.8);
+    /* Эффект glow */
+}
+
+/* GLOBAL table  */
+.table-custom {
+    background-color: rgba(20, 40, 50, 0.95);
+    /* Темный фон таблицы */
+    color: #f0f0f0;
+    /* Светлый текст для контраста */
+    border-collapse: collapse;
+    /* Убираем лишние внешние линии */
+}
+
+.table-custom td,
+.table-custom th {
+    border: none;
+    /* Убираем все границы */
+    padding: 10px;
+    color: #f0f0f0;
+    /* Белый текст */
+}
+
+.table-custom tbody tr {
+    border-bottom: 1px solid rgba(255, 215, 0, 0.5);
+    /* Тонкая золотистая линия между строками */
+
+}
+
+.table-custom tbody tr:last-child {
+    border-bottom: none;
+    /* Убираем последнюю линию */
+}
+
+.table-custom tbody tr:hover {
+    background-color: rgba(255, 215, 0, 0.2);
+    /* Подсветка строки при наведении */
+}
+
+.table-custom th {
+    background-color: rgba(30, 50, 60, 1);
+    /* Фон для заголовков */
+    color: #FFD700;
+    /* Золотистый текст для заголовков */
+    font-weight: bold;
+}
+
+.table-custom td {
+    background-color: rgba(30, 50, 60, 0.95);
+    /* Ещё более тёмный цвет для ячеек */
+}
+
+/* ERROR MODALS  */
+.error-modal {
+    /* background-color: rgba(255, 255, 255, 0.9); */
+    /* Легкий белый фон для контраста */
+    color: #333333;
+    /* Тёмно-серый текст */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    /* Тень для модального окна */
+    font-size: 16px;
+    /* Размер текста */
+    text-align: center;
+    /* Центрирование текста */
+}
+
+.error-modal h2 {
+    color: #222222;
+    /* Более тёмный заголовок */
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.error-modal p {
+    color: #333333;
+    /* Тёмно-серый для параграфов */
+}
