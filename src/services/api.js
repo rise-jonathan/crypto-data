@@ -97,3 +97,15 @@ export const getPriceConverter = async ({
 
   return data;
 };
+
+export const getExchangeList = async () => {
+  const response = await fetch(`${apiUrl}/exchanges`);
+
+  const data = await response.json();
+
+  if (response.status !== 200 && "error" in data) {
+    throw new Error(data.error);
+  }
+
+  return data;
+};

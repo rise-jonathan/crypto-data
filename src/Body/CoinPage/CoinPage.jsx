@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import Converter from "./Converter";
 import { useSelector, useDispatch } from "react-redux";
 import { setErrorMessage } from "../../services/store";
+import { BodyContext } from "../../providers/BodyProvider";
 
 function CoinPage() {
   const dispatch = useDispatch();
@@ -21,6 +22,8 @@ function CoinPage() {
   const [coinData, setCoinData] = React.useState([]);
   const [historicalData, setHistoricalData] = React.useState([]);
   const [selectedPeriod, setSelectedPeriod] = React.useState(periods[0]);
+
+  const { setHistoryLog } = React.useContext(BodyContext);
 
   const selectedCurrency = useSelector((state) => state.selectedCurrency);
 
@@ -31,7 +34,16 @@ function CoinPage() {
 
   React.useEffect(() => {
     getCoinById(coinId, selectedCurrency.name)
-      .then(setCoinData)
+      .then((data) => {
+        setHistoryLog((prevState) => [
+          ...prevState.filter((log) => log.id !== coinId),
+          {
+            id: coinId,
+            name: data.name,
+          },
+        ]);
+        setCoinData(data);
+      })
       .catch((error) => {
         dispatch(
           setErrorMessage("Historical data not available." + error.toString())
@@ -46,14 +58,14 @@ function CoinPage() {
       start: selectedPeriod.start(),
       interval: selectedPeriod.interval,
     })
-      .then((data) =>
+      .then((data) => {
         setHistoricalData(
           data?.map(({ timestamp, ...rest }) => ({
             ...rest,
             timestamp: moment(timestamp).format(selectedPeriod.format),
           }))
-        )
-      )
+        );
+      })
       .catch((error) => {
         dispatch(
           setErrorMessage("Historical data not available." + error.toString())
