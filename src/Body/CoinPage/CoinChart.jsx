@@ -7,7 +7,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-// import ModalChart from "../ModalChart";
 
 const data = [
   {

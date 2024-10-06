@@ -91,7 +91,7 @@ function CoinPage() {
               />
             </Col>
             <Col>
-              <Button onClick={handleShow} variant="primary">
+              <Button onClick={handleShow} variant="secondary">
                 Zoom
               </Button>
             </Col>

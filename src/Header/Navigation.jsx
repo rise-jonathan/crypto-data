@@ -50,6 +50,7 @@ function Navigation() {
             <NavDropdown
               title={`${selectedCurrency.name}`}
               id="navbarScrollingDropdown"
+              className="dropdown-manu"
             >
               {currencies.map((currency) => (
                 <NavDropdown.Item

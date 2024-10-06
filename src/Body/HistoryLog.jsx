@@ -7,7 +7,12 @@ function HistoryLog() {
   const { historyLog } = React.useContext(BodyContext);
 
   return historyLog.map((log) => (
-    <Link key={log.id} to={`/coin`}>
+    <Link
+      to={`/coin/${log.id}`}
+      key={log.id}
+      className="history-log-link"
+      style={{ cursor: "pointer" }}
+    >
       {log.name}
     </Link>
   ));
