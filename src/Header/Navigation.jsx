@@ -47,6 +47,9 @@ function Navigation() {
             <Link to="/exchanges" className="nav-link">
               Exchanges
             </Link>
+            <Link to="/compare" className="nav-link">
+              Compare
+            </Link>
             <NavDropdown
               title={`${selectedCurrency.name}`}
               id="navbarScrollingDropdown"

@@ -23,7 +23,8 @@ function CoinPage() {
   const [historicalData, setHistoricalData] = React.useState([]);
   const [selectedPeriod, setSelectedPeriod] = React.useState(periods[0]);
 
-  const { setHistoryLog } = React.useContext(BodyContext);
+  const { setHistoryLog, setCompareList, compareList } =
+    React.useContext(BodyContext);
 
   const selectedCurrency = useSelector((state) => state.selectedCurrency);
 
@@ -31,6 +32,7 @@ function CoinPage() {
 
   const handleShow = () => setChartModalShow(true);
   const handleClose = () => setChartModalShow(false);
+  const handleOnClick = () => setCompareList([...compareList, coinData]);
 
   React.useEffect(() => {
     getCoinById(coinId, selectedCurrency.name)
@@ -80,6 +82,9 @@ function CoinPage() {
         <Col md={4}>
           <CoinMetrics {...coinData} currency={selectedCurrency} />
           <Converter />
+          <Button className="w-100 mt-4 btn-warning" onClick={handleOnClick}>
+            Add to Compare
+          </Button>
         </Col>
         <Col md={8}>
           <CoinChart data={historicalData} />

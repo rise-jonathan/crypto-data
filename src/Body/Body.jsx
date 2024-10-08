@@ -7,6 +7,7 @@ import ErrorModal from "./ErrorModal";
 import BodyProvider from "../providers/BodyProvider";
 import ExchangeList from "./ExchangeList";
 import HistoryLog from "./HistoryLog";
+import ComparePage from "./ComparePage";
 
 const Body = (props) => {
   console.log(HistoryLog);
@@ -20,6 +21,7 @@ const Body = (props) => {
           <Route path="/coin/:coinId" element={<CoinPage {...props} />} />
           <Route path="/search/:q" element={<SearchResult />} />
           <Route path="/exchanges" element={<ExchangeList />} />
+          <Route path="/compare" element={<ComparePage />} />
         </Routes>
         <ErrorModal />
       </BodyProvider>

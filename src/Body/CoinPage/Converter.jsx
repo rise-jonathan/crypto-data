@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
 import { getPriceConverter } from "../../services/api";
 import { useSelector } from "react-redux";
+import lodash from "lodash";
 
 const initialState = {
   from: {
@@ -17,14 +18,13 @@ const initialState = {
 };
 
 function Converter() {
-  console.log("Converter");
+  // console.log("Converter");
   const [values, setValues] = React.useState(initialState);
 
   const coinList = useSelector((state) => state.coinList);
 
-  React.useEffect(() => {
-    (async () => {
-      // immediately invoked function
+  const converterDebounce = React.useCallback(
+    lodash.debounce(async (values) => {
       const data = await getPriceConverter({
         baseCurrency: values.from.coin,
         quoteCurrency: values.to.coin,
@@ -38,7 +38,12 @@ function Converter() {
           amount: data.price,
         },
       });
-    })();
+    }, 1000),
+    []
+  );
+
+  React.useEffect(() => {
+    converterDebounce(values);
   }, [values.from.amount, values.from.coin, values.to.coin]);
 
   const handleClick = () => {
