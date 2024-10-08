@@ -5,7 +5,7 @@ function ChartModal({ show, handleClose, children }) {
   return (
     <Modal size="xl" show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Title>Chart</Modal.Title>
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer>

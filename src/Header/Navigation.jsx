@@ -6,9 +6,13 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { currencies } from "../constants";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setSelectedCurrency } from "../services/store";
 
-function Navigation({ selectedCurrency, setSelectedCurrency }) {
+function Navigation() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selectedCurrency = useSelector((state) => state.selectedCurrency);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -21,9 +25,15 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary mb-4">
+    <Navbar
+      expand="lg"
+      className="navbar"
+      style={{ backgroundColor: "rgba(15, 30, 50, 0.9)", color: "#FFD700" }}
+    >
       <Container fluid>
-        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand className="navbar-brand" style={{ color: "#FFD700" }}>
+          CRYPTO EXCHANGE
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -34,16 +44,23 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
             <Link to="/" className="nav-link">
               Home
             </Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
+            <Link to="/exchanges" className="nav-link">
+              Exchanges
+            </Link>
+            <Link to="/compare" className="nav-link">
+              Compare
+            </Link>
             <NavDropdown
               title={`${selectedCurrency.name}`}
               id="navbarScrollingDropdown"
+              className="dropdown-manu"
             >
               {currencies.map((currency) => (
                 <NavDropdown.Item
+                  className="dropdown-item"
                   active={selectedCurrency.name === currency.name}
                   key={currency.name}
-                  onClick={() => setSelectedCurrency(currency)}
+                  onClick={() => dispatch(setSelectedCurrency(currency))}
                 >
                   {currency.name} {currency.symbol}
                 </NavDropdown.Item>
@@ -58,7 +75,7 @@ function Navigation({ selectedCurrency, setSelectedCurrency }) {
               aria-label="Search"
               name="q"
             />
-            <Button type="submit" variant="outline-success">
+            <Button type="submit" variant="outline-warning">
               Search
             </Button>
           </Form>

@@ -1,6 +1,6 @@
 const apiUrl = "https://api.coinpaprika.com/v1";
 
-// COIN LIST 
+// COIN LIST
 export const getCoinList = async (currency) => {
   const params = new URLSearchParams({
     quotes: currency,
@@ -11,7 +11,7 @@ export const getCoinList = async (currency) => {
   return await response.json();
 };
 
-// GLOBAL 
+// GLOBAL
 export const getGlobalData = async () => {
   const response = await fetch(`${apiUrl}/global`);
 
@@ -59,14 +59,53 @@ export const getSearch = async (q) => {
 };
 
 // CURRENCIES EXCHANGE
-export const getConverter = async ({ base_currency_id, quote_currency_id, amount, }) => {
-  const params = new URLSearchParams({
-    base_currency_id,
-    quote_currency_id,
+// export const getConverter = async ({
+//   base_currency_id,
+//   quote_currency_id,
+//   amount,
+// }) => {
+//   const params = new URLSearchParams({
+//     base_currency_id,
+//     quote_currency_id,
+//     amount,
+//   });
+
+//   const response = await fetch(`${apiUrl}/price-converter?${params}`);
+
+//   return await response.json();
+// };
+
+// CONVERTER
+export const getPriceConverter = async ({
+  baseCurrency,
+  quoteCurrency,
+  amount,
+}) => {
+  const queryParams = new URLSearchParams({
+    base_currency_id: baseCurrency,
+    quote_currency_id: quoteCurrency,
     amount,
   });
 
-  const response = await fetch(`${apiUrl}/price-converter?${params}`);
+  const response = await fetch(`${apiUrl}/price-converter?${queryParams}`);
 
-  return await response.json();
+  const data = await response.json();
+
+  if (response.status !== 200 && "error" in data) {
+    throw new Error(data.error);
+  }
+
+  return data;
+};
+
+export const getExchangeList = async () => {
+  const response = await fetch(`${apiUrl}/exchanges`);
+
+  const data = await response.json();
+
+  if (response.status !== 200 && "error" in data) {
+    throw new Error(data.error);
+  }
+
+  return data;
 };

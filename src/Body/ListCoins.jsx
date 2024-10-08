@@ -4,23 +4,29 @@ import { getCoinList } from "../services/api";
 import Alert from "react-bootstrap/Alert";
 import PriceNumber from "./PriceNumber";
 import { useNavigate } from "react-router-dom";
-import ErrorModal from "./ErrorModal";
+import { useSelector, useDispatch } from "react-redux";
+import { setErrorMessage, setCoinList } from "../services/store";
 
-function ListCoins({ selectedCurrency }) {
-  const [coinList, setCoinsList] = React.useState([]);
+function ListCoins() {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = React.useState(true);
-  const [errorMessage, setErrorMessage] = React.useState(null);
+
+  const selectedCurrency = useSelector((state) => state.selectedCurrency);
+  const coinList = useSelector((state) => state.coinList);
+
   const navigate = useNavigate();
 
   React.useEffect(() => {
     setIsLoading(true);
     getCoinList(selectedCurrency.name)
       .then((data) => {
-        setCoinsList(data.slice(0, 100));
-        setIsLoading(false);
+        dispatch(setCoinList(data.slice(0, 100)));
+        // setIsLoading(false);
       })
       .catch((error) => {
-        setErrorMessage("Coin list is not available. - " + error.toString());
+        dispatch(
+          setErrorMessage("Coin list is not available. - " + error.toString())
+        );
       })
       .finally(() => setIsLoading(false));
   }, [selectedCurrency.name]);
@@ -29,7 +35,7 @@ function ListCoins({ selectedCurrency }) {
 
   return (
     <>
-      <Table striped bordered hover>
+      <Table striped bordered hover className="table-crypto">
         <thead>
           <tr>
             <th>#</th>
@@ -70,16 +76,10 @@ function ListCoins({ selectedCurrency }) {
                 />
               </td>
               <td>{coin.max_supply}</td>
-              <td></td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <ErrorModal
-        errorMessage={errorMessage}
-        show={!!errorMessage}
-        handleClose={() => setErrorMessage(null)}
-      />
     </>
   );
 }

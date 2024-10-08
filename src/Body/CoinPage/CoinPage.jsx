@@ -12,22 +12,45 @@ import { periods } from "./constants";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import Converter from "./Converter";
-import ErrorModal from "../ErrorModal";
+import { useSelector, useDispatch } from "react-redux";
+import { setErrorMessage } from "../../services/store";
+import { BodyContext } from "../../providers/BodyProvider";
 
-function CoinPage({ selectedCurrency }) {
+function CoinPage() {
+  const dispatch = useDispatch();
   const [chartModalShow, setChartModalShow] = React.useState(false);
   const [coinData, setCoinData] = React.useState([]);
   const [historicalData, setHistoricalData] = React.useState([]);
   const [selectedPeriod, setSelectedPeriod] = React.useState(periods[0]);
-  const [errorMessage, setErrorMessage] = React.useState(null);
+
+  const { setHistoryLog, setCompareList, compareList } =
+    React.useContext(BodyContext);
+
+  const selectedCurrency = useSelector((state) => state.selectedCurrency);
 
   const { coinId } = useParams();
 
   const handleShow = () => setChartModalShow(true);
   const handleClose = () => setChartModalShow(false);
+  const handleOnClick = () => setCompareList([...compareList, coinData]);
 
   React.useEffect(() => {
-    getCoinById(coinId, selectedCurrency.name).then(setCoinData);
+    getCoinById(coinId, selectedCurrency.name)
+      .then((data) => {
+        setHistoryLog((prevState) => [
+          ...prevState.filter((log) => log.id !== coinId),
+          {
+            id: coinId,
+            name: data.name,
+          },
+        ]);
+        setCoinData(data);
+      })
+      .catch((error) => {
+        dispatch(
+          setErrorMessage("Historical data not available." + error.toString())
+        );
+      });
   }, [selectedCurrency, coinId]);
 
   React.useEffect(() => {
@@ -37,16 +60,18 @@ function CoinPage({ selectedCurrency }) {
       start: selectedPeriod.start(),
       interval: selectedPeriod.interval,
     })
-      .then((data) =>
+      .then((data) => {
         setHistoricalData(
           data?.map(({ timestamp, ...rest }) => ({
             ...rest,
             timestamp: moment(timestamp).format(selectedPeriod.format),
           }))
-        )
-      )
+        );
+      })
       .catch((error) => {
-        setErrorMessage("Historical data not available." + error.toString());
+        dispatch(
+          setErrorMessage("Historical data not available." + error.toString())
+        );
       });
   }, [selectedPeriod, selectedCurrency, coinId]);
 
@@ -57,6 +82,9 @@ function CoinPage({ selectedCurrency }) {
         <Col md={4}>
           <CoinMetrics {...coinData} currency={selectedCurrency} />
           <Converter />
+          <Button className="w-100 mt-4 btn-warning" onClick={handleOnClick}>
+            Add to Compare
+          </Button>
         </Col>
         <Col md={8}>
           <CoinChart data={historicalData} />
@@ -68,7 +96,7 @@ function CoinPage({ selectedCurrency }) {
               />
             </Col>
             <Col>
-              <Button onClick={handleShow} variant="primary">
+              <Button onClick={handleShow} variant="secondary">
                 Zoom
               </Button>
             </Col>
@@ -82,11 +110,6 @@ function CoinPage({ selectedCurrency }) {
           setSelectedPeriod={setSelectedPeriod}
         />
       </ChartModal>
-      <ErrorModal
-        errorMessage={errorMessage}
-        show={!!errorMessage}
-        handleClose={() => setErrorMessage(null)}
-      />
     </>
   );
 }
