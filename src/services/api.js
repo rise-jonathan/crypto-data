@@ -11,19 +11,19 @@ export const getCoinList = async (currency) => {
   return await response.json();
 };
 
-// GLOBAL
-export const getGlobalData = async () => {
-  const response = await fetch(`${apiUrl}/global`);
-
-  return await response.json();
-};
-
 // COIN BY ID
 export const getCoinById = async (id, currency) => {
   const params = new URLSearchParams({
     quotes: currency,
   });
   const response = await fetch(`${apiUrl}/tickers/${id}?${params}`);
+
+  return await response.json();
+};
+
+// GLOBAL
+export const getGlobalData = async () => {
+  const response = await fetch(`${apiUrl}/global`);
 
   return await response.json();
 };
@@ -58,23 +58,6 @@ export const getSearch = async (q) => {
   return await response.json();
 };
 
-// CURRENCIES EXCHANGE
-// export const getConverter = async ({
-//   base_currency_id,
-//   quote_currency_id,
-//   amount,
-// }) => {
-//   const params = new URLSearchParams({
-//     base_currency_id,
-//     quote_currency_id,
-//     amount,
-//   });
-
-//   const response = await fetch(`${apiUrl}/price-converter?${params}`);
-
-//   return await response.json();
-// };
-
 // CONVERTER
 export const getPriceConverter = async ({
   baseCurrency,
@@ -98,6 +81,7 @@ export const getPriceConverter = async ({
   return data;
 };
 
+// EXCHANGE
 export const getExchangeList = async () => {
   const response = await fetch(`${apiUrl}/exchanges`);
 
@@ -108,4 +92,20 @@ export const getExchangeList = async () => {
   }
 
   return data;
+};
+
+// COMPARE
+export const getCompareCoinId = async (id, currency) => {
+  const params = new URLSearchParams({
+    quotes: currency,
+  });
+
+  const response = await fetch(`${apiUrl}/tickers/${id}?${params}`);
+
+  if (!response.ok) {
+    console.error("Failed to fetch data:", response.statusText);
+    return { error: response.statusText };
+  }
+
+  return await response.json();
 };

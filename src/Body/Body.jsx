@@ -7,12 +7,12 @@ import ErrorModal from "./ErrorModal";
 import BodyProvider from "../providers/BodyProvider";
 import ExchangeList from "./ExchangeList";
 import HistoryLog from "./HistoryLog";
+import CoinCompare from "./CoinPage/CoinCompare";
 
 const Body = (props) => {
-  console.log(HistoryLog);
   return (
     <>
-      <BodyProvider>
+      <BodyProvider currency="USD" id="bitcoin-id">
         <HistoryLog />
         <GlobalData />
         <Routes>
@@ -20,6 +20,7 @@ const Body = (props) => {
           <Route path="/coin/:coinId" element={<CoinPage {...props} />} />
           <Route path="/search/:q" element={<SearchResult />} />
           <Route path="/exchanges" element={<ExchangeList />} />
+          <Route path="/compare" element={<CoinCompare />} />
         </Routes>
         <ErrorModal />
       </BodyProvider>
