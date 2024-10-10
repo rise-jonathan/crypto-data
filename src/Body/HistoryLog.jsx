@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BodyContext } from "../providers/BodyProvider";
 
 function HistoryLog() {
-  console.log(HistoryLog);
+  // console.log(HistoryLog);
   const { historyLog } = React.useContext(BodyContext);
 
   return historyLog.map((log) => (

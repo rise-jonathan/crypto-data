@@ -58,23 +58,6 @@ export const getSearch = async (q) => {
   return await response.json();
 };
 
-// CURRENCIES EXCHANGE
-// export const getConverter = async ({
-//   base_currency_id,
-//   quote_currency_id,
-//   amount,
-// }) => {
-//   const params = new URLSearchParams({
-//     base_currency_id,
-//     quote_currency_id,
-//     amount,
-//   });
-
-//   const response = await fetch(`${apiUrl}/price-converter?${params}`);
-
-//   return await response.json();
-// };
-
 // CONVERTER
 export const getPriceConverter = async ({
   baseCurrency,

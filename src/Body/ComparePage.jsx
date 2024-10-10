@@ -26,17 +26,26 @@ function ComparePage() {
   if (!compareList.length) return <Alert>No coins to compare</Alert>;
   return (
     <>
-      <Table>
-        <tbody>
-          {tableData.map((data, i) => (
-            <tr key={i}>
-              {data.map((d) => (
-                <td key={d}>{d}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+      <div
+        style={{
+          backgroundColor: "#1B2A41",
+          padding: "20px",
+          borderRadius: "10px",
+        }}
+      >
+        <h4>COMPARE</h4>
+        <Table striped bordered hover className="table-compare">
+          <tbody>
+            {tableData.map((data, i) => (
+              <tr key={i}>
+                {data.map((d) => (
+                  <td key={d}>{d}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     </>
   );
 }

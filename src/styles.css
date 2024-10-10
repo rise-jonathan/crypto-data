@@ -43,9 +43,7 @@ body {
 
 .dropdown-item:hover {
     background-color: #FFAA00;
-    /* Темный золотой фон при наведении */
     color: #ffffff;
-    /* Белый текст при наведении */
 }
 
 .navbar .nav-link {
@@ -110,6 +108,33 @@ body {
     text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
     /* glow */
     transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+/* Стили для ссылки в таблице */
+.table-link {
+    color: #FFD700;
+    background-color: transparent;
+    /* Убираем фон */
+    /* Золотистый цвет текста */
+    text-decoration: none;
+    /* Убираем подчеркивание */
+    cursor: pointer;
+    /* Указатель при наведении */
+    transition: color 0.3s ease;
+    /* Плавный переход для цвета */
+    text-transform: none;
+    /* Убираем заглавные буквы */
+}
+
+.table-link:hover {
+    color: #FFFFFF;
+    /* Белый текст при наведении */
+    background-color: transparent;
+    outline: none;
+    /* Убираем рамку при наведении */
+    box-shadow: none;
+    /* Убираем эффект тени или рамки */
 }
 
 h1 {
@@ -178,6 +203,52 @@ a:hover {
 .table-custom td {
     background-color: rgba(30, 50, 60, 0.95);
 }
+
+/* TABLE COMPARE  */
+.table-compare {
+    background-color: rgba(15, 30, 50, 1);
+    color: rgba(255, 255, 255, 0.9);
+    border-spacing: 0;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-compare th,
+.table-compare td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 15px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.table-compare th {
+    background-color: rgba(30, 50, 70, 1);
+    color: #FFD700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.table-compare td:first-child {
+    background-color: rgba(20, 35, 50, 1);
+    color: #FFD700;
+    font-weight: bold;
+}
+
+.table-compare tr:nth-child(even) td:not(:first-child) {
+    background-color: rgba(25, 45, 65, 1);
+}
+
+.table-compare tr:nth-child(odd) td:not(:first-child) {
+    background-color: rgba(30, 50, 70, 1);
+}
+
+.table-compare tr:hover td {
+    background-color: rgba(35, 55, 75, 1);
+    color: #FFD700;
+    text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 
 /* ERROR  */
 .error-modal {

@@ -1,14 +1,26 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
+import { Link } from "react-router-dom";
 
 function CoinMetrics({ name, symbol, quotes, currency, total_supply }) {
   return (
     <>
-      <h4>
-        {name} ({symbol}) Metrics
-      </h4>
-
-      <Table striped bordered hover className="table-crypto">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: "10px",
+        }}
+      >
+        <h4>
+          {name} ({symbol}) Metrics
+        </h4>
+        {/* <Link to="/compare" className="btn btn-outline-warning">
+          Compare
+        </Link> */}
+      </div>
+      <Table striped bordered hover className="table-compare">
         <tbody>
           <tr>
             <td>Market Cap</td>

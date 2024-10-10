@@ -82,7 +82,7 @@ function Converter() {
   if (!coinList.length) return null;
 
   return (
-    <Row className="g-3 justify-content-center mb-4" style={{ width: "27rem" }}>
+    <Row className="g-1 justify-content-center mb-4" style={{ width: "27rem" }}>
       <Col md={5} xs={12}>
         <InputGroup>
           <FloatingLabel controlId="fromInput" label="From">
