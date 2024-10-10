@@ -16,9 +16,6 @@ function CoinMetrics({ name, symbol, quotes, currency, total_supply }) {
         <h4>
           {name} ({symbol}) Metrics
         </h4>
-        {/* <Link to="/compare" className="btn btn-outline-warning">
-          Compare
-        </Link> */}
       </div>
       <Table striped bordered hover className="table-compare">
         <tbody>
