@@ -115,26 +115,17 @@ body {
 .table-link {
     color: #FFD700;
     background-color: transparent;
-    /* Убираем фон */
-    /* Золотистый цвет текста */
     text-decoration: none;
-    /* Убираем подчеркивание */
     cursor: pointer;
-    /* Указатель при наведении */
     transition: color 0.3s ease;
-    /* Плавный переход для цвета */
     text-transform: none;
-    /* Убираем заглавные буквы */
 }
 
 .table-link:hover {
     color: #FFFFFF;
-    /* Белый текст при наведении */
     background-color: transparent;
     outline: none;
-    /* Убираем рамку при наведении */
     box-shadow: none;
-    /* Убираем эффект тени или рамки */
 }
 
 h1 {
