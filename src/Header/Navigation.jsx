@@ -45,7 +45,7 @@ function Navigation() {
               Home
             </Link>
             <Link to="/exchanges" className="nav-link">
-              Exchanges
+              Markets
             </Link>
             <Link to="/compare" className="nav-link">
               Compare
