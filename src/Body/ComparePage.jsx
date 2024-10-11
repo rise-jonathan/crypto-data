@@ -26,7 +26,7 @@ function ComparePage() {
   if (!compareList.length) return <Alert>No coins to compare</Alert>;
   return (
     <>
-      <div
+<div
         style={{
           backgroundColor: "#1B2A41",
           padding: "20px",

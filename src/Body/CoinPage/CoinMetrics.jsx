@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function CoinMetrics({ name, symbol, quotes, currency, total_supply }) {
   return (
     <>
-      <div
+<div
         style={{
           display: "flex",
           justifyContent: "space-between",

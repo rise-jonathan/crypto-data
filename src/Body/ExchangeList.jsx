@@ -8,7 +8,7 @@ function ExchangeList() {
   const { exchangeList } = React.useContext(BodyContext);
 
   return (
-    <>
+ <>
       <div
         style={{
           backgroundColor: "#1B2A41",
@@ -45,7 +45,7 @@ function ExchangeList() {
           </tbody>
         </Table>
       </div>
-    </>
+</>
   );
 }
 

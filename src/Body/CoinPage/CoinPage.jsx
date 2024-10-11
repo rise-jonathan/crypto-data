@@ -81,7 +81,7 @@ function CoinPage() {
       <Row>
         <Col md={4}>
           <CoinMetrics {...coinData} currency={selectedCurrency} />
-          <Converter className="w-100 mt-10" />
+<Converter className="w-100 mt-10" />
           <Button
             className="w-100 mt-4"
             variant="outline-warning"

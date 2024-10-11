@@ -58,6 +58,7 @@ export const getSearch = async (q) => {
   return await response.json();
 };
 
+
 // CONVERTER
 export const getPriceConverter = async ({
   baseCurrency,
