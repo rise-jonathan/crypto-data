@@ -81,8 +81,12 @@ function CoinPage() {
       <Row>
         <Col md={4}>
           <CoinMetrics {...coinData} currency={selectedCurrency} />
-          <Converter />
-          <Button className="w-100 mt-4 btn-warning" onClick={handleOnClick}>
+<Converter className="w-100 mt-10" />
+          <Button
+            className="w-100 mt-4"
+            variant="outline-warning"
+            onClick={handleOnClick}
+          >
             Add to Compare
           </Button>
         </Col>
