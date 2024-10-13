@@ -18,7 +18,6 @@ const initialState = {
 };
 
 function Converter() {
-  // console.log("Converter");
   const [values, setValues] = React.useState(initialState);
 
   const coinList = useSelector((state) => state.coinList);
@@ -102,8 +101,6 @@ function Converter() {
             >
               {coinList.map((coin) => (
                 <option key={coin.id} value={coin.id}>
-                  {coin.name}
-                  {/* ({coin.symbol}) */}
                 </option>
               ))}
               ;
@@ -142,7 +139,6 @@ function Converter() {
               {coinList.map((coin) => (
                 <option key={coin.id} value={coin.id}>
                   {coin.name}
-                  {/* ({coin.symbol}) */}
                 </option>
               ))}
               ;

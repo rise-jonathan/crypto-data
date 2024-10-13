@@ -1,287 +1,281 @@
 /* style.css */
 /* BODY BACKGROUND */
 body {
-    background: linear-gradient(180deg, rgba(10, 25, 45, 1), rgba(15, 30, 50, 1));
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
+  background: linear-gradient(180deg, rgba(10, 25, 45, 1), rgba(15, 30, 50, 1));
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* NAVBAR */
 .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #FFAA00;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffaa00;
 }
 
 .nav-link {
-    font-size: 1.1rem;
-    color: #FFD700;
-    padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  color: #ffd700;
+  padding: 0.5rem 1rem;
 }
 
 .dropdown-menu {
-    background: rgba(35, 55, 75, 1);
+  background: rgba(35, 55, 75, 1);
 }
 
 .dropdown-item {
-    font-size: 1.1rem;
-    color: #FFAA00;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1.1rem;
+  color: #ffaa00;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar a {
-    transition: color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .navbar a:hover {
-    color: #ffffff;
-    background-color: #FFAA00;
-    text-decoration: underline;
+  color: #ffffff;
+  background-color: #ffaa00;
+  text-decoration: underline;
 }
 
 .dropdown-item:hover {
-    background-color: #FFAA00;
-    color: #ffffff;
+  background-color: #ffaa00;
+  color: #ffffff;
 }
 
 .navbar .nav-link {
-    color: #FFD700;
+  color: #ffd700;
 }
 
 .navbar .nav-link:hover {
-    color: #000;
-    background-color: #FFAA00;
+  color: #000;
+  background-color: #ffaa00;
 }
 
-
 .dropdown-item:first-child:hover {
-    background-color: #FFAA00;
-    color: #ffffff;
+  background-color: #ffaa00;
+  color: #ffffff;
 }
 
 .dropdown-item.active {
-    background-color: #FFAA00;
+  background-color: #ffaa00;
 }
 
 .navbar-toggler {
-    background-color: #FFAA00;
+  background-color: #ffaa00;
 }
-
 
 /* TABLES */
 .table-crypto {
-    background-color: rgba(15, 30, 50, 1);
-    color: rgba(255, 255, 255, 0.9);
-    border-spacing: 0;
-    width: 100%;
-    border-collapse: collapse;
+  background-color: rgba(15, 30, 50, 1);
+  color: rgba(255, 255, 255, 0.9);
+  border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .table-crypto th,
 .table-crypto td {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 15px;
-    text-align: left;
-    color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  text-align: left;
+  color: #ffffff;
 }
 
 /* th */
 .table-crypto th {
-    background-color: rgba(30, 50, 70, 1);
-    color: #FFD700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  background-color: rgba(30, 50, 70, 1);
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* td */
 .table-crypto td {
-    background-color: rgba(20, 40, 60, 1);
-    color: #ffffff;
+  background-color: rgba(20, 40, 60, 1);
+  color: #ffffff;
 }
 
 /* tr */
 .table-crypto tr:hover td {
-    background-color: rgba(35, 55, 75, 1);
-    color: #FFD700;
-    text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
-    /* glow */
-    transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: rgba(35, 55, 75, 1);
+  color: #ffd700;
+  text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
+  /* glow */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .table-link {
-    color: #FFD700;
-    background-color: transparent;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    text-transform: none;
+  color: #ffd700;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: none;
 }
 
 .table-link:hover {
-    color: #FFFFFF;
-    background-color: transparent;
-    outline: none;
-    box-shadow: none;
-}
-
+  color: #ffffff;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
 }
 
 h1 {
-    font-size: 36px;
-    color: #FFD700;
-    text-align: center;
-    margin-bottom: 20px;
+  font-size: 36px;
+  color: #ffd700;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 h4 {
-    color: #FFD700;
+  color: #ffd700;
 }
 
 /* BUTTONS */
 button,
 a {
-    background-color: #FFD700;
-    color: #0A192D;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffd700;
+  color: #0a192d;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover,
 a:hover {
-    background-color: #FFC107;
-    color: #ffffff;
-    box-shadow: 0px 0px 8px rgba(255, 255, 0, 0.8);
+  background-color: #ffc107;
+  color: #ffffff;
+  box-shadow: 0px 0px 8px rgba(255, 255, 0, 0.8);
 }
 
 /* GLOBAL table  */
 .table-custom {
-    background-color: rgba(20, 40, 50, 0.95);
-    color: #f0f0f0;
-    border-collapse: collapse;
+  background-color: rgba(20, 40, 50, 0.95);
+  color: #f0f0f0;
+  border-collapse: collapse;
 }
 
 .table-custom td,
 .table-custom th {
-    border: none;
-    padding: 10px;
-    color: #f0f0f0;
+  border: none;
+  padding: 10px;
+  color: #f0f0f0;
 }
 
 .table-custom tbody tr {
-    border-bottom: 1px solid rgba(255, 215, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 215, 0, 0.5);
 }
 
 .table-custom tbody tr:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .table-custom tbody tr:hover {
-    background-color: rgba(255, 215, 0, 0.2);
+  background-color: rgba(255, 215, 0, 0.2);
 }
 
 .table-custom th {
-    background-color: rgba(30, 50, 60, 1);
-    color: #FFD700;
-    font-weight: bold;
+  background-color: rgba(30, 50, 60, 1);
+  color: #ffd700;
+  font-weight: bold;
 }
 
 .table-custom td {
-    background-color: rgba(30, 50, 60, 0.95);
+  background-color: rgba(30, 50, 60, 0.95);
 }
 
 /* TABLE COMPARE  */
 .table-compare {
-    background-color: rgba(15, 30, 50, 1);
-    color: rgba(255, 255, 255, 0.9);
-    border-spacing: 0;
-    width: 100%;
-    border-collapse: collapse;
+  background-color: rgba(15, 30, 50, 1);
+  color: rgba(255, 255, 255, 0.9);
+  border-spacing: 0;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .table-compare th,
 .table-compare td {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 10px 15px;
-    text-align: left;
-    color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  text-align: left;
+  color: #ffffff;
 }
 
 .table-compare th {
-    background-color: rgba(30, 50, 70, 1);
-    color: #FFD700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  background-color: rgba(30, 50, 70, 1);
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .table-compare td:first-child {
-    background-color: rgba(20, 35, 50, 1);
-    color: #FFD700;
-    font-weight: bold;
+  background-color: rgba(20, 35, 50, 1);
+  color: #ffd700;
+  font-weight: bold;
 }
 
 .table-compare tr:nth-child(even) td:not(:first-child) {
-    background-color: rgba(25, 45, 65, 1);
+  background-color: rgba(25, 45, 65, 1);
 }
 
 .table-compare tr:nth-child(odd) td:not(:first-child) {
-    background-color: rgba(30, 50, 70, 1);
+  background-color: rgba(30, 50, 70, 1);
 }
 
 .table-compare tr:hover td {
-    background-color: rgba(35, 55, 75, 1);
-    color: #FFD700;
-    text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
-    transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: rgba(35, 55, 75, 1);
+  color: #ffd700;
+  text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-
 
 /* ERROR  */
 .error-modal {
-    color: #333;
+  color: #333;
 }
 
 .error-modal .error-modal {
-    background-color: rgba(30, 50, 60, 0.95);
-    border-color: #a3a1a1;
-    color: #000;
+  background-color: rgba(30, 50, 60, 0.95);
+  border-color: #a3a1a1;
+  color: #000;
 }
 
 /* MODALS  */
 .modal-header,
 .modal-footer {
-    background-color: rgba(30, 50, 60, 0.95);
-    border-color: #c0c0c0;
+  background-color: rgba(30, 50, 60, 0.95);
+  border-color: #c0c0c0;
 }
 
 .modal-content {
-    background-color: #a3a1a1;
-    color: #fff;
+  background-color: #a3a1a1;
+  color: #fff;
 }
 
 /* HistoryLog */
 .history-log-link {
-    color: #FFD700;
-    text-decoration: none;
-    letter-spacing: 5px;
-    margin-right: 10px;
-    padding: 5px 10px;
-    display: inline-block;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
-    border-right: 1px solid rgba(255, 255, 255, 0.3);
-    font-size: 14px;
-    transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease;
+  color: #ffd700;
+  text-decoration: none;
+  letter-spacing: 5px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 14px;
+  transition: color 0.3s ease, text-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .history-log-link:hover {
-    color: #FFC107;
-    background-color: rgba(255, 255, 255, 0.1);
-    text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
+  color: #ffc107;
+  background-color: rgba(255, 255, 255, 0.1);
+  text-shadow: 0px 0px 8px rgba(255, 215, 0, 0.8);
 }

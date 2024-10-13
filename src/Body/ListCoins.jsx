@@ -21,7 +21,6 @@ function ListCoins() {
     getCoinList(selectedCurrency.name)
       .then((data) => {
         dispatch(setCoinList(data.slice(0, 100)));
-        // setIsLoading(false);
       })
       .catch((error) => {
         dispatch(

@@ -3,12 +3,11 @@ import { Table } from "react-bootstrap";
 import { BodyContext } from "../providers/BodyProvider";
 
 function ExchangeList() {
-  // console.log("ExchangeList");
 
   const { exchangeList } = React.useContext(BodyContext);
 
   return (
- <>
+    <>
       <div
         style={{
           backgroundColor: "#1B2A41",
@@ -45,7 +44,7 @@ function ExchangeList() {
           </tbody>
         </Table>
       </div>
-</>
+    </>
   );
 }
 

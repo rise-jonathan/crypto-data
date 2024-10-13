@@ -11,7 +11,6 @@ function BodyProvider({ children }) {
   React.useEffect(() => {
     getExchangeList().then(setExchangeList);
   }, []);
-  // console.log(exchangeList);
 
   const context = {
     compareList,
