@@ -30,14 +30,18 @@ function ExchangeList() {
                 <td>{exchange.name}</td>
                 <td>{exchange.currencies}</td>
                 <td>
-                  <a
-                    href={exchange.links.website[0]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="table-link"
-                  >
-                    {exchange.links.website[0]}
-                  </a>
+                  {exchange.links?.website?.[0] ? (
+                    <a
+                      href={exchange.links.website[0]}
+                      target="_blank"
+                      // rel="noopener noreferrer"
+                      className="table-link"
+                    >
+                      {exchange.links.website[0]}
+                    </a>
+                  ) : (
+                    "N/A"
+                  )}
                 </td>
               </tr>
             ))}

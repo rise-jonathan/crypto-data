@@ -81,7 +81,7 @@ function Converter() {
   if (!coinList.length) return null;
 
   return (
-    <Row className="g-1 justify-content-center mb-4" style={{ width: "27rem" }}>
+    <Row className="g-1 justify-content-center mb-4" style={{ width: "28rem" }}>
       <Col md={5} xs={12}>
         <InputGroup>
           <FloatingLabel controlId="fromInput" label="From">
@@ -95,15 +95,15 @@ function Converter() {
           </FloatingLabel>
           <FloatingLabel controlId="from" label="Coin">
             <Form.Select
+              value={values.from.coin}
               name="from"
-              value={values.from.coin || ""}
               onChange={handleOnSelect}
             >
               {coinList.map((coin) => (
                 <option key={coin.id} value={coin.id}>
+                  {coin.name}
                 </option>
               ))}
-              ;
             </Form.Select>
           </FloatingLabel>
         </InputGroup>
